@@ -228,5 +228,53 @@ namespace Microwave.Test.Integration
             displaySubstitute.Received(3);
         }
 
+        [Test]
+        public void DoorOpenedWhileCooking_HasCookedFor2Seconds_DisplayReceivesNoMoreCallsAfterBeingStopped()
+        {
+            //ARRANGE
+            //Get system into correct state
+
+            //First, press power button to set powerlevel
+            powerButtonSubstitute.Pressed += Raise.Event();
+
+            //Second, press time button to set time
+            timeButtonSubstitute.Pressed += Raise.Event();
+
+            //Boilerplate to force a wait until ShowTime is called
+            // 1:00 - 0.59 - 0.58 <- Should receive 3 calls total
+            // Stop startcancel press is called on 3rd call - should receive no more!
+            int count = 0;
+            AutoResetEvent reset = new AutoResetEvent(false);
+
+            displaySubstitute
+                .When(d => d.ShowTime(Arg.Any<int>(), Arg.Any<int>()))
+                .Do(c =>
+                {
+                    if (count < 2)
+                    {
+                        count++;
+                    }
+                    else if (count == 2)
+                    {
+                        doorSubstitute.Opened += Raise.Event();
+                    }
+                    else
+                    {
+                        reset.Set();
+                    }
+                });
+
+
+            //Third, start-cancel button to start cooking
+            startCancelButtonSubstitute.Pressed += Raise.Event();
+
+
+            //If interrupted, that means we counted once too much!
+            //Wait for long enough to be fairly certain no more calls could be received.
+            Assert.False(reset.WaitOne(5000));
+
+            displaySubstitute.Received(3);
+        }
+
     }
 }
