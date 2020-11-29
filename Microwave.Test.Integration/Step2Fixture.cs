@@ -88,7 +88,7 @@ namespace Microwave.Test.Integration
          * a factor as with unit tests. The length is necessary to ensure that the
          * system interacts properly - It helped us spot an error!
          *
-         * If we didn't wait a minute - The minimum time that can be set on the microwave
+         * If we didn't wait a minute (the minimum time that can be set on the microwave)
          * it's possible that it would never actually finish!
          */
 
