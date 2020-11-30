@@ -61,6 +61,7 @@ namespace Microwave.Test.Integration
 
         #region PowerButton
 
+        //PowerButtonPressedOnce_IsInReadyState_ShowsPowerLevelDisplayWith50
         [Test]
         public void PowerButtonPressedOnce_IsInReadyState_ShowsPowerLevelDisplay()
         {
@@ -74,6 +75,7 @@ namespace Microwave.Test.Integration
             displaySubstitute.Received().ShowPower(50);
         }
 
+        //PowerButtonPressedOnce_IsInReadyState_ShowsPowerLevelDisplayWith100
         [Test]
         public void PowerButtonPressedTwice_IsInReadyState_ShowsPowerLevelDisplay()
         {
@@ -88,6 +90,7 @@ namespace Microwave.Test.Integration
             displaySubstitute.Received().ShowPower(100);
         }
 
+        //PowerButtonPressedOnce_IsInReadyState_ShowsPowerLevelDisplayWith150
         [Test]
         public void PowerButtonPressedThrice_IsInReadyState_ShowsPowerLevelDisplay()
         {
@@ -143,7 +146,7 @@ namespace Microwave.Test.Integration
             powerButton.Press();
 
             //ASSERT
-            displaySubstitute.DidNotReceive().ShowPower(100);
+            displaySubstitute.DidNotReceive().ShowPower(50);
         }
         #endregion
 

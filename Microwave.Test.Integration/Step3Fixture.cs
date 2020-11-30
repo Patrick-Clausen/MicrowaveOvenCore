@@ -123,6 +123,7 @@ namespace Microwave.Test.Integration
             lightSubstitute.Received().TurnOn();
         }
 
+        //DoorOpen_PowerSetTo100AndDoorIsOpenedAndClosed_MicrowaveDoesntRun
         [Test]
         public void DoorOpen_PowerSetTo100AndStarted_DoesntRun()
         {
@@ -150,6 +151,7 @@ namespace Microwave.Test.Integration
             powerTubeSubstitute.DidNotReceiveWithAnyArgs().TurnOn(default);
         }
 
+        //DoorOpen_TimeSetToTwoMinutesAndDoorOpens_DisplayIsCleared
         [Test]
         public void DoorOpen_TimeSetToTwoMinutes_DisplayIsCleared()
         {
@@ -167,6 +169,7 @@ namespace Microwave.Test.Integration
             displaySubstitute.Received().Clear();
         }
 
+        //DoorOpen_TimeSetToTwoMinutesAndDoorOpens_LightTurnsOn
         [Test]
         public void DoorOpen_TimeSetToTwoMinutes_LightTurnsOn()
         {
@@ -189,6 +192,7 @@ namespace Microwave.Test.Integration
          * Stop cooking
          */
 
+        //DoorOpen_IsCookingAndDoorIsOpened_StopsCooking
         [Test]
         public void DoorOpen_IsCooking_StopsCooking()
         {

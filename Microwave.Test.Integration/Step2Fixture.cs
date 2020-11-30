@@ -51,6 +51,8 @@ namespace Microwave.Test.Integration
             uut.UI = ui;
         }
 
+        //Bedre beskrivende test navn
+        //TimeButton_ButtonPressedOnce_DisplayShowTimeShowsOneMinute
         [Test]
         public void StartCancelPressedRunsForAFewSeconds_IsInCorrectState_DisplayShowTimeCalled()
         {
