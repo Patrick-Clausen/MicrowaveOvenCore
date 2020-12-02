@@ -136,7 +136,7 @@ namespace Microwave.Test.Integration
         }
 
         [Test]
-        public void PowerButtonPressed_IsInTimeState_DoesNothing()
+        public void PowerButtonPressed_IsInTimeState_OnlyGoesTofifty()
         {
             //ARRANGE
             powerButton.Press();
@@ -145,8 +145,8 @@ namespace Microwave.Test.Integration
             //ACT
             powerButton.Press();
 
-            //ASSERT
-            displaySubstitute.DidNotReceive().ShowPower(50);
+            //ASSERT - We are not asserting that it does nothing, but rather that the TimeState doesn't allow it to continue increasing the power level
+            displaySubstitute.DidNotReceive().ShowPower(100);
         }
         #endregion
 
